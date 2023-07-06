@@ -1,4 +1,7 @@
-import { Application, BaseTexture, SCALE_MODES, Sprite, settings } from 'pixi.js'
+import { Application, Assets, BaseTexture, SCALE_MODES, settings } from 'pixi.js'
+import { Menu } from './Classes/Menu';
+import { manifest } from './manifest';
+import { KeyBoard } from './utils/keyboard';
 
 settings.ROUND_PIXELS = true;
 BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
@@ -8,9 +11,11 @@ const app = new Application({
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
+	width: 1080,
+	height: 720
 });
+
+KeyBoard.initialize();
 
 window.addEventListener("resize", () => {
 	console.log("resized");
@@ -42,11 +47,24 @@ window.addEventListener("resize", () => {
 })
 window.dispatchEvent(new Event("resize"));
 
-const clampy: Sprite = Sprite.from("clampy.png");
+/*Assets.add("menuBackground", "./panel_blue.png")
 
-clampy.anchor.set(0.5);
+Assets.addBundle("myAssets", assets);
+Assets.loadBundle(["myAssets"]).then(() => {
+	const menu = new Menu();
+	app.stage.addChild(menu);
+})*/
 
-clampy.x = app.screen.width / 2;
-clampy.y = app.screen.height / 2;
+async function initializeLoader() {
 
-app.stage.addChild(clampy);
+	await Assets.init({ manifest : manifest });
+
+	const bundleIds = manifest.bundles.map(bundle => bundle.name);
+
+	await Assets.loadBundle(bundleIds);
+}
+
+initializeLoader();
+
+const menu = new Menu();
+app.stage.addChild(menu);
