@@ -5,6 +5,7 @@ export class KeyBoard{
     public static readonly state : Map<String, Boolean> = new Map();
 
     public static readonly down : utils.EventEmitter = new utils.EventEmitter();
+    public static readonly up : utils.EventEmitter = new utils.EventEmitter();
 
     private constructor(){}
 
@@ -24,10 +25,17 @@ export class KeyBoard{
 
     private static onKeyDown(e: KeyboardEvent){
 
+        if(KeyBoard.state.get(e.code) != true){
+            
+            KeyBoard.down.emit(e.code);
+        }
+
         KeyBoard.state.set(e.code, true);
     }
 
     private static onKeyUp(e: KeyboardEvent){
+
+        KeyBoard.up.emit(e.code);
         
         KeyBoard.state.set(e.code, false);
     }

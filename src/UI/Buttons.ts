@@ -1,5 +1,8 @@
 //ENTIENDES ESTES CODIGO?
 import { Container, Sprite, Texture, Text} from "pixi.js";
+import { KeyBoard } from "../utils/Keyboard";
+import { Manager } from "../utils/Manager";
+import { GameScene } from "../Scenes/GameScene";
 
 export class Buttons extends Container{
 
@@ -25,6 +28,11 @@ export class Buttons extends Container{
         newGameButton.on("pointerdown", this.onButtonDown.bind(this));
         newGameButton.on("pointerup", this.onButtonUp.bind(this));
         this.addChild(newGameButton);
+        //Texto del New Game Button
+        const newGameButtonText = new Text("New Game", {fontSize: 20, fontFamily: 'Courier New'});
+        newGameButtonText.anchor.set(1);
+        newGameButtonText.position.set(newGameButton.width / 2, newGameButton.height / 2);
+        newGameButton.addChild(newGameButtonText);
 
         //Key Pressed
         this.lastKeyPressed = new Text("Waiting...", {fontSize : 48, fontFamily: 'Courier New'});
@@ -37,6 +45,9 @@ export class Buttons extends Container{
 
         this.addChild(this.lastKeyPressed);
 
+        KeyBoard.down.on("KeyB", this.onKeyB, this);
+        KeyBoard.up.on("KeyB", this.onKeyBUp, this);
+
         //Exite Game Button
         const exitGameButton = Sprite.from(this.buttonTexture);
         exitGameButton.anchor.set(0.5);
@@ -48,6 +59,11 @@ export class Buttons extends Container{
         exitGameButton.on("pointerdown", this.onExitButtonDown.bind(this));
         exitGameButton.on("pointerup", this.onExitButtonUp.bind(this));
         this.addChild(exitGameButton);
+        //Texto del Exit Game Button
+        const exitButtonText = new Text("Exit Game", {fontSize: 20, fontFamily: 'Courier New'});
+        exitButtonText.anchor.set(1);
+        exitButtonText.position.set(exitGameButton.width / 2, exitGameButton.height / 2);
+        exitGameButton.addChild(exitButtonText);
     }
 
     onButtonDown(event : PointerEvent){
@@ -55,6 +71,8 @@ export class Buttons extends Container{
 
         const sprite = event.currentTarget as Sprite;
         sprite.texture = this.buttonDownTexture;
+
+        Manager.changeScene(new GameScene);
     }
 
     onButtonUp(event : PointerEvent){
@@ -68,7 +86,7 @@ export class Buttons extends Container{
         console.log("YOU...");
 
         const sprite = event.currentTarget as Sprite;
-        sprite.texture = this.buttonTexture;
+        sprite.texture = this.buttonDownTexture;
     }
 
     onExitButtonUp(event : PointerEvent){
@@ -82,5 +100,13 @@ export class Buttons extends Container{
         console.log("Key Pressed", e.code);
 
         this.lastKeyPressed.text = e.code;
+    }
+
+    private onKeyB() : void {
+        console.log("aprete la B", this);
+    }
+
+    private onKeyBUp() : void {
+        console.log("solte la B", this);
     }
 }
