@@ -2,7 +2,7 @@
 import { Container, Sprite, Texture, Text} from "pixi.js";
 import { KeyBoard } from "../utils/Keyboard";
 import { Manager } from "../utils/Manager";
-import { GameScene } from "../Scenes/GameScene";
+import { TickerScene } from "../Scenes/TickerScene";
 
 export class Buttons extends Container{
 
@@ -72,7 +72,7 @@ export class Buttons extends Container{
         const sprite = event.currentTarget as Sprite;
         sprite.texture = this.buttonDownTexture;
 
-        Manager.changeScene(new GameScene);
+        Manager.changeScene(new TickerScene);
     }
 
     onButtonUp(event : PointerEvent){

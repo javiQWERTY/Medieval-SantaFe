@@ -9,9 +9,10 @@ export class Manager {
     private static app: Application;
     private static currentScene: IScene;
 
+    
     // Width and Height are read-only after creation (for now)
-    private static _width: number;
-    private static _height: number;
+    public static _width : number;
+    public static _height : number;
 
     // With getters but not setters, these variables become read-only
     public static get width(): number {
@@ -34,8 +35,8 @@ export class Manager {
             resolution: window.devicePixelRatio || 1,
             autoDensity: true,
             backgroundColor: background,
-            width: 1280,
-            height: 720
+            width: width,
+            height: height
         });
 
         // eslint-disable-line ***PIXI DEV TOOLS***
