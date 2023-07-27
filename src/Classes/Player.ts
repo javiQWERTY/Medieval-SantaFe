@@ -1,10 +1,12 @@
 import { AnimatedSprite, Graphics, Texture } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
-import { KeyBoard } from "../utils/Keyboard";
+import { Keyboard } from "../utils/Keyboard";
 
 export class Player extends PhysicsContainer{
     
     private runAnimated: AnimatedSprite;
+    private hitbox: Graphics;
+
     private static readonly GRAVITY = 100;
     private static readonly MOVE_SPEED = 1000;
 
@@ -31,33 +33,26 @@ export class Player extends PhysicsContainer{
         this.position.y = 1;
         this.addChild(this.runAnimated);
         
-        const auxZero = new Graphics();
-        auxZero.beginFill(0xFF0000)
-        auxZero.drawCircle(0, 0, 1);
-        auxZero.endFill();
+        this.hitbox = new Graphics();
+        this.hitbox.beginFill(0xFF00FF, 0.0001);
+        this.hitbox.drawRect(0, -140, 90, 140);
+        this.hitbox.endFill;
+        this.hitbox.pivot.x = this.hitbox.width / 2;
 
         this.addChild(this.runAnimated);
-        this.addChild(auxZero);
+        this.addChild(this.hitbox);
         
         this.acceleration.y = Player.GRAVITY;   
     }
 
-    public override update(deltaMS: number){
+    public override update(deltaTime: number){
 
-        super.update(deltaMS / 1000);
-        this.runAnimated.update(deltaMS / (1000/60));
-
+        super.update(deltaTime / 1000);
+        this.runAnimated.update(deltaTime / (1000/60));
         //MOVIMIENTO POR TECLADO
         //movimiento a la derecha.
-        if(KeyBoard.state.get("ArrowRight")){
-
+        if(Keyboard.state.get("KeyD")){
             this.speed.x = Player.MOVE_SPEED;
-            //movimiento a la izquierda.
-        }else if(KeyBoard.state.get ("ArrowLeft")){
-
-            this.speed.x = -Player.MOVE_SPEED;
-        }else{
-            this.speed.x = 0;
         }
     }
 }

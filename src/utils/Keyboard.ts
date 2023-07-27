@@ -1,6 +1,6 @@
 import { utils } from "pixi.js";
 
-export class KeyBoard{
+export class Keyboard{
 
     public static readonly state : Map<String, Boolean> = new Map();
 
@@ -13,30 +13,30 @@ export class KeyBoard{
 
     public static initialize() : void{
 
-        if(KeyBoard.initialized){
+        if(Keyboard.initialized){
             return;
         }
 
-        KeyBoard.initialized = true;
+        Keyboard.initialized = true;
 
-        document.addEventListener("keydown", KeyBoard.onKeyDown);
-        document.addEventListener("keydown", KeyBoard.onKeyUp);
+        document.addEventListener("keydown", Keyboard.onKeyDown);
+        document.addEventListener("keydown", Keyboard.onKeyUp);
     }
 
     private static onKeyDown(e: KeyboardEvent){
 
-        if(KeyBoard.state.get(e.code) != true){
+        if(Keyboard.state.get(e.code) != true){
             
-            KeyBoard.down.emit(e.code);
+            Keyboard.down.emit(e.code);
         }
 
-        KeyBoard.state.set(e.code, true);
+        Keyboard.state.set(e.code, true);
     }
 
     private static onKeyUp(e: KeyboardEvent){
 
-        KeyBoard.up.emit(e.code);
+        Keyboard.up.emit(e.code);
         
-        KeyBoard.state.set(e.code, false);
+        Keyboard.state.set(e.code, false);
     }
 }

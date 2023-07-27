@@ -1,6 +1,5 @@
 //ENTIENDES ESTES CODIGO?
 import { Container, Sprite, Texture, Text} from "pixi.js";
-import { KeyBoard } from "../utils/Keyboard";
 import { Manager } from "../utils/Manager";
 import { TickerScene } from "../Scenes/TickerScene";
 
@@ -9,7 +8,7 @@ export class Buttons extends Container{
     private buttonTexture: Texture;
     private buttonDownTexture: Texture;
 
-    private lastKeyPressed: Text;
+    //private lastKeyPressed: Text;
 
     public constructor(){
         super();
@@ -33,20 +32,6 @@ export class Buttons extends Container{
         newGameButtonText.anchor.set(1);
         newGameButtonText.position.set(newGameButton.width / 2, newGameButton.height / 2);
         newGameButton.addChild(newGameButtonText);
-
-        //Key Pressed
-        this.lastKeyPressed = new Text("Waiting...", {fontSize : 48, fontFamily: 'Courier New'});
-        this.lastKeyPressed.anchor.set(0.5);
-        this.lastKeyPressed.scale.set(0.3);
-        this.lastKeyPressed.position.x = 50;
-        this.lastKeyPressed.position.y = 50;
-
-        document.addEventListener ("keydown", this.onKeyDown.bind(this));
-
-        this.addChild(this.lastKeyPressed);
-
-        KeyBoard.down.on("KeyB", this.onKeyB, this);
-        KeyBoard.up.on("KeyB", this.onKeyBUp, this);
 
         //Exite Game Button
         const exitGameButton = Sprite.from(this.buttonTexture);
@@ -94,19 +79,5 @@ export class Buttons extends Container{
         
         const sprite = event.currentTarget as Sprite;
         sprite.texture = this.buttonTexture;
-    }
-
-    onKeyDown(e : KeyboardEvent){
-        console.log("Key Pressed", e.code);
-
-        this.lastKeyPressed.text = e.code;
-    }
-
-    private onKeyB() : void {
-        console.log("aprete la B", this);
-    }
-
-    private onKeyBUp() : void {
-        console.log("solte la B", this);
     }
 }

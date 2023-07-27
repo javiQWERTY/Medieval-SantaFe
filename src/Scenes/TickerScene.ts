@@ -13,7 +13,7 @@ export class TickerScene extends Container implements IScene{
         this.player = new Player();
         this.addChild(this.player);
     }
-    public update(deltaTime: number,_deltaFrame: number){
+    public update(deltaTime: number,_deltaFrame: number):void{
 
         this.player.update(deltaTime);
         //limit horizontal.
