@@ -8,7 +8,7 @@ export class Player extends PhysicsContainer{
     private hitbox: Graphics;
 
     private static readonly GRAVITY = 100;
-    private static readonly MOVE_SPEED = 1000;
+    private static readonly MOVE_SPEED = 100;
 
     constructor(){
         super();
@@ -31,7 +31,7 @@ export class Player extends PhysicsContainer{
         this.scale.set(5);
         this.position.x = 1;
         this.position.y = 1;
-        this.addChild(this.runAnimated);
+        //this.addChild(this.runAnimated);
         
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.0001);
@@ -45,13 +45,14 @@ export class Player extends PhysicsContainer{
         this.acceleration.y = Player.GRAVITY;   
     }
 
-    public override update(deltaTime: number){
+    public override update(deltaMS: number){
 
-        super.update(deltaTime / 1000);
-        this.runAnimated.update(deltaTime / (1000/60));
+        super.update(deltaMS / 1000);
+        this.runAnimated.update(deltaMS / (1000/60));
+        console.log(deltaMS / (1000/60));
         //MOVIMIENTO POR TECLADO
         //movimiento a la derecha.
-        if(Keyboard.state.get("KeyD")){
+        if(Keyboard.state.get('ArrowRight') == true){
             this.speed.x = Player.MOVE_SPEED;
         }
     }
