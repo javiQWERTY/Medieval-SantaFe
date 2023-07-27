@@ -68,7 +68,7 @@ export class Manager {
 
         // Add the ticker
         //Manager.app.ticker.add(Manager.update)
-        Ticker.shared.add(Manager.update)        
+        Ticker.shared.add(Manager.update)      
 
     }
 

@@ -11,7 +11,9 @@ export class TickerScene extends Container implements IScene{
         super();
 
         this.player = new Player();
-        this.addChild(this.player);
+        this.addChild(this.player);      
+        
+        console.log("Nueva Escena!");
     }
     public update(deltaTime: number,_deltaFrame: number):void{
 
@@ -34,6 +36,5 @@ export class TickerScene extends Container implements IScene{
             this.player.speed.y = 0; 
             //console.log("Tocó el borde inferior!");
         }
-        
     }
 }

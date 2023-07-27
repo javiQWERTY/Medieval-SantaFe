@@ -19,24 +19,27 @@ export class Keyboard{
 
         Keyboard.initialized = true;
 
-        document.addEventListener("keydown", Keyboard.onKeyDown);
-        document.addEventListener("keydown", Keyboard.onKeyUp);
+        document.addEventListener("keydown", Keyboard.onKeyDown)
+        document.addEventListener("keydown", Keyboard.onKeyUp)
     }
 
     private static onKeyDown(e: KeyboardEvent){
 
-        if(Keyboard.state.get(e.code) != true){
+        if(Keyboard.state.get(e.key) != true){
             
-            Keyboard.down.emit(e.code);
+            Keyboard.down.emit(e.key);
         }
 
-        Keyboard.state.set(e.code, true);
+        Keyboard.state.set(e.key, true);
+        console.log("Key Down", e.key);
     }
 
     private static onKeyUp(e: KeyboardEvent){
 
-        Keyboard.up.emit(e.code);
+        Keyboard.up.emit(e.key);
         
-        Keyboard.state.set(e.code, false);
+        Keyboard.state.set(e.key, false);
+        
+        console.log("Key Up");
     }
 }

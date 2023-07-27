@@ -8,7 +8,7 @@ export class Buttons extends Container{
     private buttonTexture: Texture;
     private buttonDownTexture: Texture;
 
-    //private lastKeyPressed: Text;
+    private lastKeyPressed: Text;
 
     public constructor(){
         super();
@@ -38,7 +38,7 @@ export class Buttons extends Container{
         exitGameButton.anchor.set(0.5);
         exitGameButton.scale.set(0.4);
         exitGameButton.position.x = 50;
-        exitGameButton.position.y = 80;
+        exitGameButton.position.y = 50;
         exitGameButton.interactive = true;
         exitGameButton.cursor = "pointer";
         exitGameButton.on("pointerdown", this.onExitButtonDown.bind(this));
@@ -49,10 +49,20 @@ export class Buttons extends Container{
         exitButtonText.anchor.set(1);
         exitButtonText.position.set(exitGameButton.width / 2, exitGameButton.height / 2);
         exitGameButton.addChild(exitButtonText);
+        //Muestra de tecla presionada
+        this.lastKeyPressed = new Text("Waiting...", {fontSize: 20, fontFamily: 'Courier New'});
+        this.lastKeyPressed.anchor.set(0.5);
+        this.lastKeyPressed.scale.set(0.4);
+        this.lastKeyPressed.position.x = 50;
+        this.lastKeyPressed.position.y = 80;
+        this.addChild(this.lastKeyPressed);
+
+        //document.addEventListener("keydown", this.onKeyDown.bind(this));
+        //document.addEventListener("keyup", this.onKeyUp.bind(this));
     }
 
     onButtonDown(event : PointerEvent){
-        console.log("Presionaste el Boton");
+        console.log("Presionaste el Boton!");
 
         const sprite = event.currentTarget as Sprite;
         sprite.texture = this.buttonDownTexture;
@@ -80,4 +90,14 @@ export class Buttons extends Container{
         const sprite = event.currentTarget as Sprite;
         sprite.texture = this.buttonTexture;
     }
+
+    /*onKeyDown(e:KeyboardEvent):void{
+        console.log("Key Pressed!", e.code);
+        this.lastKeyPressed.text = e.code;
+    }
+
+    onKeyUp(e:KeyboardEvent):void{
+        console.log("Key Relesed!", e.code);
+        this.lastKeyPressed.text = e.code;
+    }*/
 }

@@ -7,7 +7,7 @@ export class Player extends PhysicsContainer{
     private runAnimated: AnimatedSprite;
     private hitbox: Graphics;
 
-    private static readonly GRAVITY = 100;
+    private static readonly GRAVITY = 500;
     private static readonly MOVE_SPEED = 100;
 
     constructor(){
@@ -31,7 +31,7 @@ export class Player extends PhysicsContainer{
         this.scale.set(5);
         this.position.x = 1;
         this.position.y = 1;
-        //this.addChild(this.runAnimated);
+        this.addChild(this.runAnimated);
         
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.0001);
@@ -39,21 +39,26 @@ export class Player extends PhysicsContainer{
         this.hitbox.endFill;
         this.hitbox.pivot.x = this.hitbox.width / 2;
 
+        this.acceleration.y = Player.GRAVITY;
+
         this.addChild(this.runAnimated);
         this.addChild(this.hitbox);
         
-        this.acceleration.y = Player.GRAVITY;   
     }
 
     public override update(deltaMS: number){
 
         super.update(deltaMS / 1000);
         this.runAnimated.update(deltaMS / (1000/60));
-        console.log(deltaMS / (1000/60));
         //MOVIMIENTO POR TECLADO
         //movimiento a la derecha.
-        if(Keyboard.state.get('ArrowRight') == true){
+        if (Keyboard.state.get('ArrowRight') == true) {
+            console.log("Entro en el if");
+            console.log("this.speed.x:", this.speed.x);
+            console.log("Player.MOVE_SPEED:", Player.MOVE_SPEED);
             this.speed.x = Player.MOVE_SPEED;
-        }
+        } /*else {
+            console.log("No se presionó la tecla ArrowRight");
+        }*/
     }
 }
