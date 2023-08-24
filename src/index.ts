@@ -6,7 +6,7 @@ import { Keyboard } from "./utils/Keyboard";
 // Scale mode for all textures, will retain pixelation
 BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
 
-Manager.initialize(1600, 900, 0x50b9f2);
+Manager.initialize(1080, 720, 0x50b9f2);
 
 Keyboard.initialize();
 

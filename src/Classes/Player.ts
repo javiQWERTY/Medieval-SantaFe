@@ -8,7 +8,7 @@ export class Player extends PhysicsContainer{
 
     private hitbox: Graphics;
 
-    private static readonly GRAVITY = 350;
+    private static readonly GRAVITY = 600;
     private static readonly MOVE_SPEED = 350;
 
     public canJump = true;
