@@ -19,22 +19,18 @@ export class TickerScene extends Container implements IScene{
 
         this.player.update(deltaTime);
         //limit horizontal.
-        if(this.player.x > this.width){
+        if(this.player.x > Manager.width){
             //limit right
-            this.player.x = this.width;
-            //console.log("Tocó el borde derecho!");
-            this.player.scale.x = - 1; 
+            this.player.x = Manager.width;
         }else if(this.player.x < 0){
             //limit left.
             this.player.x = 0;
-            this.player.scale.x = 1;
         }
         //limit vertical
         if(this.player.y > Manager.height){
 
             this.player.y = Manager.height;
-            this.player.speed.y = 0; 
-            //console.log("Tocó el borde inferior!");
+            this.player.canJump = true;
         }
     }
 }

@@ -6,8 +6,9 @@ import { Keyboard } from "./utils/Keyboard";
 // Scale mode for all textures, will retain pixelation
 BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
 
+Manager.initialize(1600, 900, 0x50b9f2);
+
 Keyboard.initialize();
-Manager.initialize(1366, 768, 0x50b9f2);
 
 // We no longer need to tell the scene the size because we can ask Manager!
 const loady: LoaderScene = new LoaderScene();

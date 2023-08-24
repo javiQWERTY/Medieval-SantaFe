@@ -5,10 +5,13 @@ import { Keyboard } from "../utils/Keyboard";
 export class Player extends PhysicsContainer{
     
     private runAnimated: AnimatedSprite;
+
     private hitbox: Graphics;
 
-    private static readonly GRAVITY = 500;
-    private static readonly MOVE_SPEED = 100;
+    private static readonly GRAVITY = 350;
+    private static readonly MOVE_SPEED = 350;
+
+    public canJump = true;
 
     constructor(){
         super();
@@ -29,36 +32,66 @@ export class Player extends PhysicsContainer{
         this.runAnimated.anchor.set(0.5, 1)
         this.runAnimated.animationSpeed = 0.25;
         this.scale.set(5);
-        this.position.x = 1;
-        this.position.y = 1;
+        this.position.set(1);
         this.addChild(this.runAnimated);
         
+        const auxZero = new Graphics();
+        auxZero.beginFill(0xFF00FF);
+        auxZero.drawCircle(0, 0, 1);
+        auxZero.endFill();
+
         this.hitbox = new Graphics();
-        this.hitbox.beginFill(0xFF00FF, 0.0001);
-        this.hitbox.drawRect(0, -140, 90, 140);
-        this.hitbox.endFill;
-        this.hitbox.pivot.x = this.hitbox.width / 2;
+        this.hitbox.beginFill(0xFF00FF, 0.3);
+        this.hitbox.drawRect(0, 0, 20, 35);
+        this.hitbox.endFill();
+        this.hitbox.x = -10;
+        this.hitbox.y = -40;
 
         this.acceleration.y = Player.GRAVITY;
 
+        Keyboard.down.on("ArrowUp", this.jump, this);
+
         this.addChild(this.runAnimated);
-        this.addChild(this.hitbox);
-        
+        this.addChild(auxZero);
+        this.addChild(this.hitbox);        
     }
 
-    public override update(deltaMS: number){
+    public override destroy(options:any){
+        super.destroy(options);
+        Keyboard.down.off("ArrowUp", this.jump);        
+    }
+
+    public override update(deltaMS: number):void{
 
         super.update(deltaMS / 1000);
         this.runAnimated.update(deltaMS / (1000/60));
         //MOVIMIENTO POR TECLADO
-        //movimiento a la derecha.
-        if (Keyboard.state.get('ArrowRight') == true) {
-            console.log("Entro en el if");
-            console.log("this.speed.x:", this.speed.x);
-            console.log("Player.MOVE_SPEED:", Player.MOVE_SPEED);
+        //Movimiento a la Derecha.
+        if (Keyboard.state.get("ArrowRight")) {
+
             this.speed.x = Player.MOVE_SPEED;
-        } /*else {
-            console.log("No se presionó la tecla ArrowRight");
-        }*/
+            this.runAnimated.scale.x = 1;
+            //Movimiento a la Izquierda.
+        }else if (Keyboard.state.get("ArrowLeft")){
+
+            this.speed.x = - Player.MOVE_SPEED;
+            this.runAnimated.scale.x = -1;
+            //Idle.
+        }else{
+            this.speed.x = 0;
+        }
+
+        if(Keyboard.state.get("ArrowUp")){
+
+            this.jump();
+        }
+    }
+
+    private jump(){
+        if(this.canJump){
+
+            this.canJump = false;
+            this.speed.y = -350;
+        }
     }
 }
