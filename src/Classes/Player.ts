@@ -1,8 +1,9 @@
-import { AnimatedSprite, Graphics, Texture } from "pixi.js";
+import { AnimatedSprite, Graphics, Rectangle, Texture } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { Keyboard } from "../utils/Keyboard";
+import { IHitbox } from "../utils/IHitbox";
 
-export class Player extends PhysicsContainer{
+export class Player extends PhysicsContainer implements IHitbox{
     
     private runAnimated: AnimatedSprite;
 
@@ -54,6 +55,10 @@ export class Player extends PhysicsContainer{
         this.addChild(this.runAnimated);
         this.addChild(auxZero);
         this.addChild(this.hitbox);        
+    }
+
+    public getHitbox(): Rectangle {
+        return this.hitbox.getBounds();
     }
 
     public override destroy(options:any){
