@@ -11,6 +11,7 @@ export class Player extends PhysicsContainer implements IHitbox{
 
     private static readonly GRAVITY = 600;
     private static readonly MOVE_SPEED = 350;
+    private static readonly JUMP_SPEED = 450;
 
     public canJump = true;
 
@@ -90,13 +91,21 @@ export class Player extends PhysicsContainer implements IHitbox{
 
             this.jump();
         }
+
+        if(Keyboard.state.get("ArrowDown")){
+
+            this.acceleration.y = Player.GRAVITY * 2;
+        }else{
+
+            this.acceleration.y = Player.GRAVITY;
+        }
     }
 
     private jump(){
         if(this.canJump){
 
             this.canJump = false;
-            this.speed.y = -350;
+            this.speed.y = -Player.JUMP_SPEED;
         }
     }
 
@@ -123,6 +132,7 @@ export class Player extends PhysicsContainer implements IHitbox{
 
                 this.y -= overlap.height;
                 this.speed.y = 0;
+                this.canJump = true;
             }
         }
     }
