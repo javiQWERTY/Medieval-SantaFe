@@ -4,7 +4,7 @@ export interface IHitbox{
     getHitbox():Rectangle;
 }
 
-export function checkCollision(objA:IHitbox, objB:IHitbox):boolean{
+export function checkCollision(objA:IHitbox, objB:IHitbox):Rectangle | null{
 
     const rA = objA.getHitbox();
     const rB = objB.getHitbox();
@@ -25,9 +25,16 @@ export function checkCollision(objA:IHitbox, objB:IHitbox):boolean{
     const makessenseVertical = bottommostTop < topmostBottom;
     if(makessenseHorizontal && makessenseVertical){
 
-        return true;
+        //Rectangulo donde se superponen los mismos.
+        const retval = new Rectangle();
+        retval.x = rightmostLeft;
+        retval.y = bottommostTop;
+        retval.width = leftmostRight - rightmostLeft;
+        retval.height = topmostBottom - bottommostTop;
+
+        return retval;
     }else{
 
-        return false;
+        return null;
     }
 }

@@ -33,7 +33,7 @@ export class Keyboard{
         }
 
         Keyboard.state.set(e.key, true);
-        console.log("Key ", e.key, " Down");
+        //console.log("Key ", e.key, " Down");
     }
 
     private static onKeyUp(e: KeyboardEvent){

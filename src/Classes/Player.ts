@@ -1,4 +1,4 @@
-import { AnimatedSprite, Graphics, Rectangle, Texture } from "pixi.js";
+import { AnimatedSprite, Graphics, ObservablePoint, Rectangle, Texture } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { Keyboard } from "../utils/Keyboard";
 import { IHitbox } from "../utils/IHitbox";
@@ -43,7 +43,7 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 20, 35);
+        this.hitbox.drawRect(0, 0, 20, 32.5);
         this.hitbox.endFill();
         this.hitbox.x = -10;
         this.hitbox.y = -40;
@@ -97,6 +97,33 @@ export class Player extends PhysicsContainer implements IHitbox{
 
             this.canJump = false;
             this.speed.y = -350;
+        }
+    }
+
+    
+    separate(overlap: Rectangle, platform: ObservablePoint<any>) {
+        if(overlap.width < overlap.height){
+
+            if(this.x > platform.x){
+
+                this.x += overlap.width;
+            }else if(this.x < platform.x){
+
+                this.x -= overlap.width;
+            }
+
+        }else{
+            
+            if(this.y < platform.y){
+
+                this.y += overlap.height;
+                this.speed.y = 0;
+                this.canJump = true;
+            }else if(this.y > platform.y){
+
+                this.y -= overlap.height;
+                this.speed.y = 0;
+            }
         }
     }
 }

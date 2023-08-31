@@ -1,4 +1,4 @@
-import {  Container  } from "pixi.js";
+import {  Container, Texture, TilingSprite  } from "pixi.js";
 import { IScene } from "../utils/IScene";
 import { Manager } from "../utils/Manager";
 import { Player } from "../Classes/Player";
@@ -9,25 +9,34 @@ import { checkCollision } from "../utils/IHitbox";
 
 export class TickerScene extends Container implements IScene{
 
+    private bg: TilingSprite;
     private player: Player;
     private tiledFloor: Floor;
-    //private boxes: Box;
     private platforms:Platform[];
+    //private boxes: Box;
 
     constructor(){
         super();
 
+        this.bg = new TilingSprite(Texture.from("./VillageBackground.jpg"), Manager.width, Manager.height);
+        this.addChild(this.bg);
+
         this.platforms = []; 
 
         const plat = new Platform();
-        plat.position.set(500, 500);
+        plat.position.set(550, 500);
         this.addChild(plat);
         this.platforms.push(plat);
 
         const plat2 = new Platform();
-        plat2.position.set(700, 400);
+        plat2.position.set(850, 400);
         this.addChild(plat2);
         this.platforms.push(plat2);
+
+        const plat3 = new Platform();
+        plat3.position.set(300, 620);
+        this.addChild(plat3);
+        this.platforms.push(plat3);
 
         this.player = new Player();
         this.tiledFloor = new Floor();
@@ -43,7 +52,12 @@ export class TickerScene extends Container implements IScene{
 
         for (let platform of this.platforms) {
             
-            console.log(checkCollision(this.player, platform));
+            //console.log(checkCollision(this.player, platform));
+            const overlap = checkCollision(this.player, platform);
+            if(overlap != null){
+
+                this.player.separate(overlap, platform.position);
+            }
         }
 
         //limit horizontal.
@@ -58,6 +72,7 @@ export class TickerScene extends Container implements IScene{
         if(this.player.y > Manager.height){
 
             this.player.y = Manager.height;
+            this.player.speed.y = 0;
             this.player.canJump = true;
         }
     }
