@@ -21,6 +21,8 @@ export class TickerScene extends Container implements IScene{
 
     private gameSpeed:number = 100;
 
+    private timePassed:number = 0;
+
     constructor(){
         super();
 
@@ -28,7 +30,8 @@ export class TickerScene extends Container implements IScene{
 
         this.bg = new TilingSprite(Texture.from("./Backgrounds/Background_1.png"), Manager._width, Manager._height);
         this.bg2 = new TilingSprite(Texture.from("./Backgrounds/Background_2.png"), Manager._width, Manager._height);
-        this.addChild(this.bg2, this.bg);
+        this.addChild(this.bg2);
+        this.addChild(this.bg);
 
         this.platforms = []; 
 
@@ -52,11 +55,6 @@ export class TickerScene extends Container implements IScene{
         this.world.addChild(plat);
         this.platforms.push(plat);
 
-        plat = new Platform();
-        plat.position.set(-250, 400);
-        this.world.addChild(plat);
-        this.platforms.push(plat);
-
         this.player = new Player();
         this.tiledFloor = new Floor();
         //this.boxes = new Box();
@@ -68,6 +66,23 @@ export class TickerScene extends Container implements IScene{
         console.log("Nueva Escena!");
     }
     public update(deltaTime: number,_deltaFrame: number):void{
+
+        //Creacion de una plataforma cada x segundos
+        this.timePassed += deltaTime;
+
+        if(this.timePassed > 2000){
+
+            this.gameSpeed += 20;
+
+            this.timePassed = 0;
+
+            const plat = new Platform();
+            plat.position.set(Manager.width, Math.random() * 1080);
+            this.world.addChild(plat);
+            this.platforms.push(plat);
+
+        }
+
         this.player.update(deltaTime);
 
         for (let platform of this.platforms) {
@@ -81,7 +96,17 @@ export class TickerScene extends Container implements IScene{
 
                 this.player.separate(overlap, platform.position);
             }
+
+            //Destruir plataformas fuera de la pantalla
+            if(platform.getHitbox().right < 0){
+
+                platform.destroy();
+            }
         }
+
+        //Sacar las plataformas destruidas del Array de arriba
+        this.platforms = this.platforms.filter((elem) => !elem.destroyed);
+        console.log(this.platforms.length);
 
         this.bg.tilePosition.x -= this.gameSpeed * (deltaTime/1000);
 
