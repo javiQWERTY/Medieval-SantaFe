@@ -2,9 +2,9 @@ import {  Container, Texture, TilingSprite  } from "pixi.js";
 import { IScene } from "../utils/IScene";
 import { Manager } from "../utils/Manager";
 import { Player } from "../Classes/Player";
-import { Platform } from "../Classes/Platform";
+//import { Platform } from "../Classes/Platform";
 import { Floor } from "../Classes/Floor";
-import { checkCollision } from "../utils/IHitbox";
+//import { checkCollision } from "../utils/IHitbox";
 
 export class TickerScene extends Container implements IScene{
 
@@ -14,14 +14,14 @@ export class TickerScene extends Container implements IScene{
     private player: Player;
 
     private tiledFloor: Floor;
-    private platforms:Platform[];
+    //private platforms:Platform[];
     //private boxes: Box;
 
     private world:Container;
 
     private gameSpeed:number = 100;
 
-    private timePassed:number = 0;
+    //private timePassed:number = 0;
 
     constructor(){
         super();
@@ -33,6 +33,7 @@ export class TickerScene extends Container implements IScene{
         this.addChild(this.bg2);
         this.addChild(this.bg);
 
+        /*
         this.platforms = []; 
 
         let plat = new Platform();
@@ -54,6 +55,7 @@ export class TickerScene extends Container implements IScene{
         plat.position.set(50, 500);
         this.world.addChild(plat);
         this.platforms.push(plat);
+        */
 
         this.player = new Player();
         this.tiledFloor = new Floor();
@@ -68,6 +70,7 @@ export class TickerScene extends Container implements IScene{
     public update(deltaTime: number,_deltaFrame: number):void{
 
         //Creacion de una plataforma cada x segundos
+        /*
         this.timePassed += deltaTime;
 
         if(this.timePassed > 2000){
@@ -82,9 +85,10 @@ export class TickerScene extends Container implements IScene{
             this.platforms.push(plat);
 
         }
+        */
 
         this.player.update(deltaTime);
-
+        /*
         for (let platform of this.platforms) {
 
             platform.speed.x = - this.gameSpeed;
@@ -103,10 +107,11 @@ export class TickerScene extends Container implements IScene{
                 platform.destroy();
             }
         }
+        */
 
         //Sacar las plataformas destruidas del Array de arriba
-        this.platforms = this.platforms.filter((elem) => !elem.destroyed);
-        console.log(this.platforms.length);
+        //this.platforms = this.platforms.filter((elem) => !elem.destroyed);
+        //console.log(this.platforms.length);
 
         this.bg.tilePosition.x -= this.gameSpeed * (deltaTime/1000);
 
