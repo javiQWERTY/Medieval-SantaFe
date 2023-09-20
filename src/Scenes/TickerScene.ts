@@ -67,7 +67,7 @@ export class TickerScene extends Container implements IScene{
         
         console.log("Nueva Escena!");
     }
-    public update(deltaTime: number,_deltaFrame: number):void{
+    public update(_deltaTime: number, deltaFrame: number):void{
 
         //Creacion de una plataforma cada x segundos
         /*
@@ -87,7 +87,7 @@ export class TickerScene extends Container implements IScene{
         }
         */
 
-        this.player.update(deltaTime);
+        this.player.update(deltaFrame);
         /*
         for (let platform of this.platforms) {
 
@@ -113,7 +113,7 @@ export class TickerScene extends Container implements IScene{
         //this.platforms = this.platforms.filter((elem) => !elem.destroyed);
         //console.log(this.platforms.length);
 
-        this.bg.tilePosition.x -= this.gameSpeed * (deltaTime/1000);
+        this.bg.tilePosition.x -= this.gameSpeed * (deltaFrame/1000);
 
         /*
         //limit horizontal.

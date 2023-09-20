@@ -1,6 +1,7 @@
 import { AnimatedSprite, Container, Texture } from "pixi.js";
+import { IScene } from "../utils/IScene";
 
-export class StateAnimation extends Container{
+export class StateAnimation extends Container implements IScene{
 
     private states: Map<string, AnimatedSprite> = new Map();
 
@@ -26,7 +27,7 @@ export class StateAnimation extends Container{
 
     }
 
-    public addState(stateName: string, frames: Texture[] | string[], animationSpeed:number = 0.12, loop:boolean = true) {
+    public addState(stateName: string, frames: Texture[] | string[], animationSpeed:number = 1, loop:boolean = true) {
 
         const texArray: Texture[] = [];
         for (const tex of frames) {
@@ -48,11 +49,11 @@ export class StateAnimation extends Container{
         this.states.set(stateName,  tempAnim);
     }
 
-    public update(_deltaTime: number, _deltaFrame: number):void{
+    public update(_deltaTime: number, frames: number):void{
 
         for (const states of this.states.values()) {
             
-            states.update(_deltaFrame);
+            states.update(frames);
         }
     }
 }

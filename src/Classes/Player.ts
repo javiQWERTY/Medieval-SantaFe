@@ -30,13 +30,13 @@ export class Player extends PhysicsContainer implements IHitbox{
             Texture.from("Character/Run/5.png"),
             Texture.from("Character/Run/6.png"),
             Texture.from("Character/Run/7.png"),
-        ], 0.12, true);
+        ], 1);
         //Jump State Animation
         this.player.addState("jump", [
             "Character/Jump/0.png",
             "Character/Jump/1.png",
             "Character/Jump/2.png"
-        ], 0.12, true);
+        ], 1);
         //Idle State Animation
         this.player.addState("idle", [
             "Character/Idle/00.png",
@@ -49,7 +49,7 @@ export class Player extends PhysicsContainer implements IHitbox{
             "Character/Idle/07.png",
             "Character/Idle/08.png",
             "Character/Idle/09.png",
-        ], 0.12, true);
+        ], 1);
         this.scale.set(5);
         this.position.set(100, 700);
         this.addChild(this.player);
@@ -87,20 +87,21 @@ export class Player extends PhysicsContainer implements IHitbox{
     public override update(deltaMS: number):void{
 
         super.update(deltaMS / 1000);
-        this.player.update((deltaMS / (1000/60)));
+
+        this.player.update((deltaMS / (1000/60)), 0);
         //MOVIMIENTO POR TECLADO
         //Movimiento a la Derecha.
         if (Keyboard.state.get("ArrowRight")) {
 
-            this.player.playState("run", true);
             this.speed.x = Player.MOVE_SPEED;
             this.player.scale.x = 1;
+            this.player.playState("run", true);
             //Movimiento a la Izquierda.
         }else if (Keyboard.state.get("ArrowLeft")){
 
-            this.player.playState("run", true);
             this.speed.x = - Player.MOVE_SPEED;
             this.player.scale.x = -1;
+            this.player.playState("run", true);
             //Idle.
         }else{
 
