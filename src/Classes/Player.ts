@@ -1,11 +1,12 @@
-import { AnimatedSprite, Graphics, ObservablePoint, Rectangle, Texture } from "pixi.js";
+import { Graphics, ObservablePoint, Rectangle, Texture } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { Keyboard } from "../utils/Keyboard";
 import { IHitbox } from "../utils/IHitbox";
+import { StateAnimation } from "./StateAnimation";
 
 export class Player extends PhysicsContainer implements IHitbox{
     
-    private runAnimated: AnimatedSprite;
+    private player: StateAnimation;
 
     private hitbox: Graphics;
 
@@ -17,25 +18,41 @@ export class Player extends PhysicsContainer implements IHitbox{
 
     constructor(){
         super();
-        //Animated Sprite
-        this.runAnimated = new AnimatedSprite([
-            Texture.from("./Run/tile000.png"),
-            Texture.from("./Run/tile001.png"),
-            Texture.from("./Run/tile002.png"),
-            Texture.from("./Run/tile003.png"),
-            Texture.from("./Run/tile004.png"),
-            Texture.from("./Run/tile005.png"),
-            Texture.from("./Run/tile006.png"),
-            Texture.from("./Run/tile007.png"),
-        ],
-        false
-        );
-        this.runAnimated.play();
-        this.runAnimated.anchor.set(0.5, 1)
-        this.runAnimated.animationSpeed = 0.25;
+        this.player = new StateAnimation();
+        //States Animations
+        //Run State Animation
+        this.player.addState("run",[
+            Texture.from("Character/Run/0.png"),
+            Texture.from("Character/Run/1.png"),
+            Texture.from("Character/Run/2.png"),
+            Texture.from("Character/Run/3.png"),
+            Texture.from("Character/Run/4.png"),
+            Texture.from("Character/Run/5.png"),
+            Texture.from("Character/Run/6.png"),
+            Texture.from("Character/Run/7.png"),
+        ], 0.12, true);
+        //Jump State Animation
+        this.player.addState("jump", [
+            "Character/Jump/0.png",
+            "Character/Jump/1.png",
+            "Character/Jump/2.png"
+        ], 0.12, true);
+        //Idle State Animation
+        this.player.addState("idle", [
+            "Character/Idle/00.png",
+            "Character/Idle/01.png",
+            "Character/Idle/02.png",
+            "Character/Idle/03.png",
+            "Character/Idle/04.png",
+            "Character/Idle/05.png",
+            "Character/Idle/06.png",
+            "Character/Idle/07.png",
+            "Character/Idle/08.png",
+            "Character/Idle/09.png",
+        ], 0.12, true);
         this.scale.set(5);
-        this.position.set(1);
-        this.addChild(this.runAnimated);
+        this.position.set(100, 700);
+        this.addChild(this.player);
         
         const auxZero = new Graphics();
         auxZero.beginFill(0xFF00FF);
@@ -53,7 +70,7 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         Keyboard.down.on("ArrowUp", this.jump, this);
 
-        this.addChild(this.runAnimated);
+        this.addChild(this.player);
         this.addChild(auxZero);
         this.addChild(this.hitbox);        
     }
@@ -67,28 +84,32 @@ export class Player extends PhysicsContainer implements IHitbox{
         Keyboard.down.off("ArrowUp", this.jump);        
     }
 
-    public override update(deltaMS: number):void{
+    public override update(_deltaTime: number, _deltaFrame: number):void{
 
-        super.update(deltaMS / 1000);
-        this.runAnimated.update(deltaMS / (1000/60));
+        this.player.update(_deltaTime);
         //MOVIMIENTO POR TECLADO
         //Movimiento a la Derecha.
         if (Keyboard.state.get("ArrowRight")) {
 
+            this.player.playState("run", true);
             this.speed.x = Player.MOVE_SPEED;
-            this.runAnimated.scale.x = 1;
+            this.player.scale.x = 1;
             //Movimiento a la Izquierda.
         }else if (Keyboard.state.get("ArrowLeft")){
 
+            this.player.playState("run", true);
             this.speed.x = - Player.MOVE_SPEED;
-            this.runAnimated.scale.x = -1;
+            this.player.scale.x = -1;
             //Idle.
         }else{
+
+            this.player.playState("idle", true);
             this.speed.x = 0;
         }
 
         if(Keyboard.state.get("ArrowUp")){
-
+            
+            this.player.playState("jump", true);
             this.jump();
         }
 

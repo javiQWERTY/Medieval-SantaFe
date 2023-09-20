@@ -10,6 +10,13 @@ export const manifest : ResolverManifest = {
                 "MenuBackground" : "./panel_blue.png",
                 "Button Default" : "./buttonLong_blue.png"
             }
+        },
+        {            
+            name : "CharacterSheet",
+            assets :
+            {
+                "Character" : "./Character/texture.json"
+            }
         }
     ]
 }
