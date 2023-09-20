@@ -67,11 +67,11 @@ export class TickerScene extends Container implements IScene{
         
         console.log("Nueva Escena!");
     }
-    public update(_deltaTime: number,_deltaFrame: number):void{
+    public update(deltaTime: number,_deltaFrame: number):void{
 
         //Creacion de una plataforma cada x segundos
         /*
-        this.timePassed += _deltaTime;
+        this.timePassed += deltaTime;
 
         if(this.timePassed > 2000){
 
@@ -87,12 +87,12 @@ export class TickerScene extends Container implements IScene{
         }
         */
 
-        this.player.update(_deltaTime);
+        this.player.update(deltaTime);
         /*
         for (let platform of this.platforms) {
 
             platform.speed.x = - this.gameSpeed;
-            platform.update(_deltaTime / 1000);
+            platform.update(deltaTime / 1000);
             
             //console.log(checkCollision(this.player, platform));
             const overlap = checkCollision(this.player, platform);
@@ -113,7 +113,7 @@ export class TickerScene extends Container implements IScene{
         //this.platforms = this.platforms.filter((elem) => !elem.destroyed);
         //console.log(this.platforms.length);
 
-        this.bg.tilePosition.x -= this.gameSpeed * (_deltaTime/1000);
+        this.bg.tilePosition.x -= this.gameSpeed * (deltaTime/1000);
 
         /*
         //limit horizontal.
