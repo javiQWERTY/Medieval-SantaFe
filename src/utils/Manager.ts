@@ -95,7 +95,4 @@ export class Manager {
         }
         // as I said before, I HATE the "frame passed" approach. I would rather use `Manager.app.ticker.deltaMS`
     }
-
-
-
 }

@@ -88,7 +88,7 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         super.update(deltaMS / 1000);
 
-        this.player.update(deltaMS/(1000/60), 0);
+        this.player.update(deltaMS/(1000/60));
         //MOVIMIENTO POR TECLADO
         //Movimiento a la Derecha.
         if (Keyboard.state.get("ArrowRight")) {

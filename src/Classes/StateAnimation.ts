@@ -48,11 +48,11 @@ export class StateAnimation extends Container implements IScene{
         this.states.set(stateName,  tempAnim);
     }
 
-    public update(_deltaTime: number, _deltaFrame: number):void{
+    public update(deltaMS:number):void{
 
         for (const states of this.states.values()) {
             
-            states.update(_deltaFrame);
+            states.update(deltaMS/(1000/60));
         }
     }
 }
