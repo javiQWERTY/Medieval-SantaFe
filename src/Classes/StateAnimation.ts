@@ -12,31 +12,30 @@ export class StateAnimation extends Container implements IScene{
         this.addChild(this.animContainer);
     }
 
-    public playState(stateName: string, restartAnim:boolean) {
+    public playState(stateName: string, restartAnim:boolean = false) {
 
         this.animContainer.removeChildren();
         const currentState = this.states.get(stateName);
+
         if(currentState){
-
             this.animContainer.addChild(currentState);
-            if(restartAnim){
 
+            if(restartAnim){
             currentState.gotoAndPlay(0);
             }
         }
 
     }
 
-    public addState(stateName: string, frames: Texture[] | string[], animationSpeed:number = 1, loop:boolean = true) {
+    public addState(stateName: string, frames: Texture[] | string[], animationSpeed:number = 0.2, loop:boolean = true) {
 
         const texArray: Texture[] = [];
         for (const tex of frames) {
             
             if(typeof tex == "string"){
-
                 texArray.push(Texture.from(tex));
-            }else{
 
+            }else{
                 texArray.push(tex);
             }
         }
@@ -49,11 +48,11 @@ export class StateAnimation extends Container implements IScene{
         this.states.set(stateName,  tempAnim);
     }
 
-    public update(_deltaTime: number, frames: number):void{
+    public update(_deltaTime: number, _deltaFrame: number):void{
 
         for (const states of this.states.values()) {
             
-            states.update(frames);
+            states.update(_deltaFrame);
         }
     }
 }

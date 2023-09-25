@@ -19,7 +19,7 @@ export class TickerScene extends Container implements IScene{
 
     private world:Container;
 
-    private gameSpeed:number = 100;
+    private gameSpeed:number = 200;
 
     //private timePassed:number = 0;
 
@@ -67,7 +67,7 @@ export class TickerScene extends Container implements IScene{
         
         console.log("Nueva Escena!");
     }
-    public update(_deltaTime: number, deltaFrame: number):void{
+    public update(deltaTime: number, deltaFrame: number):void{
 
         //Creacion de una plataforma cada x segundos
         /*
@@ -87,7 +87,7 @@ export class TickerScene extends Container implements IScene{
         }
         */
 
-        this.player.update(deltaFrame);
+        this.player.update(deltaTime);
         /*
         for (let platform of this.platforms) {
 
