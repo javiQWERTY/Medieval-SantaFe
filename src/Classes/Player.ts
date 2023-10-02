@@ -53,11 +53,6 @@ export class Player extends PhysicsContainer implements IHitbox{
         this.scale.set(5);
         this.position.set(100, 700);
         this.addChild(this.player);
-        
-        const auxZero = new Graphics();
-        auxZero.beginFill(0xFF00FF);
-        auxZero.drawCircle(0, 0, 1);
-        auxZero.endFill();
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
@@ -71,7 +66,6 @@ export class Player extends PhysicsContainer implements IHitbox{
         Keyboard.down.on("ArrowUp", this.jump, this);
 
         this.addChild(this.player);
-        this.addChild(auxZero);
         this.addChild(this.hitbox);        
     }
 
@@ -88,20 +82,20 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         super.update(deltaMS / 1000);
 
-        this.player.update(deltaMS/(1000/60));
+        //this.player.update(deltaMS/(1000/60));
         //MOVIMIENTO POR TECLADO
         //Movimiento a la Derecha.
         if (Keyboard.state.get("ArrowRight")) {
 
             this.speed.x = Player.MOVE_SPEED;
             this.player.scale.x = 1;
-            this.player.playState("run", true);
+            this.player.playState("run");
             //Movimiento a la Izquierda.
         }else if (Keyboard.state.get("ArrowLeft")){
 
             this.speed.x = - Player.MOVE_SPEED;
             this.player.scale.x = -1;
-            this.player.playState("run", true);
+            this.player.playState("run");
             //Idle.
         }else{
 
