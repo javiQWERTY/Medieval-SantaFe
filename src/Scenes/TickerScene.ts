@@ -4,6 +4,7 @@ import { Manager } from "../utils/Manager";
 import { Player } from "../Classes/Player";
 //import { Platform } from "../Classes/Platform";
 import { Floor } from "../Classes/Floor";
+import { Enemy } from "../Classes/Enemy";
 //import { checkCollision } from "../utils/IHitbox";
 
 export class TickerScene extends Container implements IScene{
@@ -12,6 +13,7 @@ export class TickerScene extends Container implements IScene{
     private bg2: TilingSprite;
 
     private player: Player;
+    private enemy: Enemy;
 
     private tiledFloor: Floor;
     //private platforms:Platform[];
@@ -58,10 +60,12 @@ export class TickerScene extends Container implements IScene{
         */
 
         this.player = new Player();
+        this.enemy = new Enemy();
         this.tiledFloor = new Floor();
         //this.boxes = new Box();
         this.world.addChild(this.tiledFloor);
         //this.addChild(this.boxes);
+        this.world.addChild(this.enemy);
         this.world.addChild(this.player);
         this.addChild(this.world);      
         
@@ -88,6 +92,7 @@ export class TickerScene extends Container implements IScene{
         */
 
         this.player.update(deltaTime);
+        this.enemy.update(deltaTime);
         /*
         for (let platform of this.platforms) {
 

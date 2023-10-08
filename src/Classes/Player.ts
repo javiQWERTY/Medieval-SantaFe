@@ -52,7 +52,7 @@ export class Player extends PhysicsContainer implements IHitbox{
         ]);
         this.scale.set(5);
         this.position.set(100, 700);
-        this.addChild(this.player);
+        //this.addChild(this.player);
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
