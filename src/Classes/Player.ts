@@ -65,8 +65,8 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         Keyboard.down.on("ArrowUp", this.jump, this);
 
-        this.addChild(this.player);
-        this.addChild(this.hitbox);        
+        this.addChild(this.hitbox);   
+        this.addChild(this.player);     
     }
 
     public getHitbox(): Rectangle {

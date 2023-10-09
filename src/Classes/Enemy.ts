@@ -1,10 +1,12 @@
-//Que te parece mi clase Enemy?
-import { Graphics, Texture } from "pixi.js";
+import { Graphics, Rectangle, Texture } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { StateAnimation } from "./StateAnimation";
 import { Manager } from "../utils/Manager";
+import { IHitbox, checkCollision } from "../utils/IHitbox";
+import { Player } from "./Player";
+import { RectangleHitbox } from "../utils/RectangleHitbox";
 
-export class Enemy extends PhysicsContainer{
+export class Enemy extends PhysicsContainer implements IHitbox{
 
     private enemy: StateAnimation;
 
@@ -36,19 +38,45 @@ export class Enemy extends PhysicsContainer{
         //Creacion de la Hitbox
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 20, 32.5);
+        this.hitbox.drawRect(0, 0, 40, 32.5);
         this.hitbox.endFill();
-        this.hitbox.x = -10;
-        this.hitbox.y = -40;
+        // this.hitbox.x = -10;
+        // this.hitbox.y = -40;
         //Se agregan los hijos.
         this.addChild(this.hitbox);
         this.addChild(this.enemy);
 
     }
+    public getHitbox(): Rectangle {
+        return this.hitbox.getBounds();
+    }
+    
+        /*
+            El método para que el enemigo detecte al jugador se puede dividir en los siguientes pasos:
+    
+            Obtener la hitbox del jugador.
+            Obtener la hitbox del enemigo.
+            Verificar si las dos hitbox se intersectan.
+        */
+       detectPlayer():boolean{
+        
+        const player = new Player();
+        const enemyHitbox = new RectangleHitbox(this.getHitbox());
+        const playerHitbox = new RectangleHitbox(player.getHitbox());
+        const collision = checkCollision(enemyHitbox, playerHitbox);
 
-    // getHitbox(): Rectangle {
-    //     return this.hitbox.getBounds;
-    // }
+        if(collision){
+
+            console.log("!!!");
+            return true;
+        }else{
+
+            console.log("???");
+            return false;
+        }
+    }
+
+    
 
     public override update(deltaMS:number): void {
         super.update(deltaMS/1000);
@@ -76,5 +104,8 @@ export class Enemy extends PhysicsContainer{
             this.y = Manager.height;
             this.speed.y = 0;
         }
+
+        //Detect Player
+        this.detectPlayer();
     }
 }

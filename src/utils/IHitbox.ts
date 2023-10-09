@@ -1,5 +1,4 @@
 import { Rectangle } from "pixi.js";
-
 export interface IHitbox{
     getHitbox():Rectangle;
 }
@@ -38,3 +37,4 @@ export function checkCollision(objA:IHitbox, objB:IHitbox):Rectangle | null{
         return null;
     }
 }
+
