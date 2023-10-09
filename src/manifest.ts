@@ -17,6 +17,13 @@ export const manifest : ResolverManifest = {
             {
                 "Character" : "./Character/texture.json"
             }
+        },
+        {
+            name : "AbiponSheet",
+            assets : 
+            {
+                "Abipon" : "./Abipon/texture.json"
+            }
         }
     ]
 }

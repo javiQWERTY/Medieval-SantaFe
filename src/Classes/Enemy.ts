@@ -10,7 +10,7 @@ export class Enemy extends PhysicsContainer{
 
     private hitbox: Graphics
 
-    private static readonly MOVE_SPEED = 10;
+    private static readonly GRAVITY = 600;
 
     constructor(){
         super();
@@ -18,32 +18,21 @@ export class Enemy extends PhysicsContainer{
         this.enemy = new StateAnimation();
         //Enemy States Animations
         //Run State
-        this.enemy.addState("run",[
-            Texture.from("Character/Run/0.png"),
-            Texture.from("Character/Run/1.png"),
-            Texture.from("Character/Run/2.png"),
-            Texture.from("Character/Run/3.png"),
-            Texture.from("Character/Run/4.png"),
-            Texture.from("Character/Run/5.png"),
-            Texture.from("Character/Run/6.png"),
-            Texture.from("Character/Run/7.png"),
-        ]);
-        //Idle State
-        this.enemy.addState("idle",[
-            "Character/Idle/00.png",
-            "Character/Idle/01.png",
-            "Character/Idle/02.png",
-            "Character/Idle/03.png",
-            "Character/Idle/04.png",
-            "Character/Idle/05.png",
-            "Character/Idle/06.png",
-            "Character/Idle/07.png",
-            "Character/Idle/08.png",
-            "Character/Idle/09.png",
-        ]);
-        //Atributos de Posicion y Escala
+        this.enemy.addState("walk",[
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x48.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x49.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x50.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x51.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x52.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x53.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x54.png"),
+            Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x55.png"),
+        ], 0.15);
+        //Atributos de Posicion, Escala, Velocidad y Aceleracion.
         this.scale.set(5);
-        this.position.set(500, 700);
+        this.position.set(600, 700);        
+        this.acceleration.y = Enemy.GRAVITY;
+        this.speed.x = 70;
         //Creacion de la Hitbox
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
@@ -52,8 +41,8 @@ export class Enemy extends PhysicsContainer{
         this.hitbox.x = -10;
         this.hitbox.y = -40;
         //Se agregan los hijos.
-        this.addChild(this.enemy);
         this.addChild(this.hitbox);
+        this.addChild(this.enemy);
 
     }
 
@@ -61,29 +50,31 @@ export class Enemy extends PhysicsContainer{
     //     return this.hitbox.getBounds;
     // }
 
-    public override update(deltaMS: number): void {
+    public override update(deltaMS:number): void {
         super.update(deltaMS/1000);
-        this.enemy.playState("run");
+        this.enemy.playState("walk");
 
-        //Movimiento Horizontal y Limite Horizontal
-        this.x += Enemy.MOVE_SPEED;
+        //Movimiento Horizontal
+        this.x += this.speed.x * (deltaMS/1000);
+        //limit right
         if (this.x > Manager.width) {
 
             this.x = Manager.width;
-            this.x = - Enemy.MOVE_SPEED;
-            this.scale.x = -1;
-        }else if(this.x < 0){
+            this.speed.x = - this.speed.x;
+            this.scale.x = -5;
+        }//limit left
+        else if(this.x < 500){
 
-            this.x = 0;
-            this.x += Enemy.MOVE_SPEED; 
-            this.scale.x = 1;
+            this.x = 500;
+            this.speed.x = - this.speed.x;
+            this.scale.x = 5;
         }
 
         //limit vertical
         if(this.y > Manager.height){
 
             this.y = Manager.height;
-            this.y = 0;
+            this.speed.y = 0;
         }
     }
 }

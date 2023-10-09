@@ -99,7 +99,7 @@ export class Player extends PhysicsContainer implements IHitbox{
             //Idle.
         }else{
 
-            this.player.playState("idle", true);
+            this.player.playState("idle");
             this.speed.x = 0;
         }
 
