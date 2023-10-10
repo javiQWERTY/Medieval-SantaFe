@@ -1,16 +1,13 @@
-import {  Container, Texture, TilingSprite  } from "pixi.js";
+import { Container, Texture, TilingSprite } from "pixi.js";
 import { IScene } from "../utils/IScene";
 import { Manager } from "../utils/Manager";
 import { Player } from "../Classes/Player";
-//import { Platform } from "../Classes/Platform";
 import { Floor } from "../Classes/Floor";
 import { Enemy } from "../Classes/Enemy";
 import { checkCollision } from "../utils/IHitbox";
 import { RectangleHitbox } from "../utils/RectangleHitbox";
-// import { RectangleHitbox } from "../utils/RectangleHitbox";
-// import { checkCollision } from "../utils/IHitbox";
 
-export class TickerScene extends Container implements IScene{
+export class TickerScene extends Container implements IScene {
 
     private bg: TilingSprite;
     private bg2: TilingSprite;
@@ -20,11 +17,11 @@ export class TickerScene extends Container implements IScene{
 
     private tiledFloor: Floor;
 
-    private world:Container;
+    private world: Container;
 
-    private gameSpeed:number = 200;
+    private gameSpeed: number = 200;
 
-    constructor(){
+    constructor() {
         super();
 
         this.world = new Container();
@@ -44,48 +41,55 @@ export class TickerScene extends Container implements IScene{
 
         console.log("Nueva Escena!");
     }
-        /*
-            El método para que el enemigo detecte al jugador se puede dividir en los siguientes pasos:
-    
-            Obtener la hitbox del jugador.
-            Obtener la hitbox del enemigo.
-            Verificar si las dos hitbox se intersectan.
-        */
-            detectPlayer():void{
+    /*
+        El método para que el enemigo detecte al jugador se puede dividir en los siguientes pasos:
+ 
+        Obtener la hitbox del jugador.
+        Obtener la hitbox del enemigo.
+        Verificar si las dos hitbox se intersectan.
+    */
+    public detectPlayer(): boolean {
 
-                const enemyHitbox = new RectangleHitbox(this.enemy.getHitbox());
-                const playerHitbox = new RectangleHitbox(this.player.getHitbox());
-                const collision = checkCollision(enemyHitbox, playerHitbox);
-        
-                if(collision){
-        
-                    //El enemigo detecto al jugador
-                    console.log("!!! - STOP RIGHT THERE - !!!");
-                    //Hacemos que el enemigo vaya al jugador
-                    this.enemy.speed.x = (this.player.x - this.enemy.x) * 1;
-                    //Hacemos que el enemigo mire al jugador
-                    if(this.enemy.x < this.player.x){
+        const enemyHitbox = new RectangleHitbox(this.enemy.getHitbox());
+        const playerHitbox = new RectangleHitbox(this.player.getHitbox());
+        const collision = checkCollision(enemyHitbox, playerHitbox);
 
-                        this.enemy.scale.x = 5;
-                    }else{
+        if (collision) {
 
-                        this.enemy.scale.x = -5;
-                    }
-                }else{
-        
-                    console.log("It must be the wind");
-                }
+            //El enemigo detecto al jugador
+            console.log("!!! - STOP RIGHT THERE - !!!");
+            //Hacemos que el enemigo vaya al jugador
+            this.enemy.speed.x = (this.player.x - this.enemy.x) * 0.5;
+            //Hacemos que el enemigo mire al jugador
+            if (this.enemy.x < this.player.x) {
+
+                this.enemy.scale.x = 5;
+            } else {
+
+                this.enemy.scale.x = -5;
             }
+            //Ataque
+            this.enemy.attackToPlayer();
+            return true;
+        } else {
 
-    public update(deltaTime: number, deltaFrame: number):void{
+            console.log("It must be the wind");
+            this.enemy.enemyIdleRun();
+            this.enemy.speed.x = this.enemy.speed.x;
+            return false;
+        }
+    }
+    
+    public update(deltaTime: number, deltaFrame: number): void {
 
         //Detect Player
         this.detectPlayer();
         this.player.update(deltaTime);
+        this.player.attack();
         this.enemy.update(deltaTime);
-        
 
-        this.bg.tilePosition.x -= this.gameSpeed * (deltaFrame/1000);
+
+        this.bg.tilePosition.x -= this.gameSpeed * (deltaFrame / 1000);
 
         /*
         //limit horizontal.
@@ -98,7 +102,7 @@ export class TickerScene extends Container implements IScene{
         }
         */
         //limit vertical
-        if(this.player.y > Manager.height){
+        if (this.player.y > Manager.height) {
 
             this.player.y = Manager.height;
             this.player.speed.y = 0;

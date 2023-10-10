@@ -3,9 +3,10 @@ import { PhysicsContainer } from "./PhysicsContainer";
 import { Keyboard } from "../utils/Keyboard";
 import { IHitbox } from "../utils/IHitbox";
 import { StateAnimation } from "./StateAnimation";
+import { Enemy } from "./Enemy";
 
-export class Player extends PhysicsContainer implements IHitbox{
-    
+export class Player extends PhysicsContainer implements IHitbox {
+
     private player: StateAnimation;
 
     private hitbox: Graphics;
@@ -16,12 +17,12 @@ export class Player extends PhysicsContainer implements IHitbox{
 
     public canJump = true;
 
-    constructor(){
+    constructor() {
         super();
         this.player = new StateAnimation();
         //States Animations
         //Run State Animation
-        this.player.addState("run",[
+        this.player.addState("run", [
             Texture.from("Character/Run/0.png"),
             Texture.from("Character/Run/1.png"),
             Texture.from("Character/Run/2.png"),
@@ -50,12 +51,31 @@ export class Player extends PhysicsContainer implements IHitbox{
             "Character/Idle/08.png",
             "Character/Idle/09.png",
         ]);
+        //Attack State Animation
+        this.player.addState("basicSwordAttack", [
+            "Character/Basic Sword Attack 1/0.png",
+            "Character/Basic Sword Attack 1/1.png",
+            "Character/Basic Sword Attack 1/2.png",
+            "Character/Basic Sword Attack 1/3.png",
+            "Character/Basic Sword Attack 1/4.png",
+            "Character/Basic Sword Attack 1/5.png",
+        ], 0.3)
+        //Stab State Animation
+        this.player.addState("stabAttack",[
+            "Character/Sword Stab/0.png",
+            "Character/Sword Stab/1.png",
+            "Character/Sword Stab/2.png",
+            "Character/Sword Stab/3.png",
+            "Character/Sword Stab/4.png",
+            "Character/Sword Stab/5.png",
+            "Character/Sword Stab/6.png",
+        ])
         this.scale.set(5);
         this.position.set(100, 700);
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 20, 32.5);
+        this.hitbox.drawRect(0, 0, 30, 32.5);
         this.hitbox.endFill();
         this.hitbox.x = -10;
         this.hitbox.y = -40;
@@ -64,20 +84,34 @@ export class Player extends PhysicsContainer implements IHitbox{
 
         Keyboard.down.on("ArrowUp", this.jump, this);
 
-        this.addChild(this.hitbox);   
-        this.addChild(this.player);     
+        this.addChild(this.hitbox);
+        this.addChild(this.player);
     }
 
     public getHitbox(): Rectangle {
         return this.hitbox.getBounds();
     }
 
-    public override destroy(options:any){
+    public override destroy(options: any) {
         super.destroy(options);
-        Keyboard.down.off("ArrowUp", this.jump);        
+        Keyboard.down.off("ArrowUp", this.jump);
     }
 
-    public override update(deltaMS: number):void{
+    enemy = new Enemy();
+    //Ataque por teclado
+    public attack(): void {
+        if (Keyboard.state.get("x")) {
+
+            this.player.playState("basicSwordAttack", false);
+            this.enemy.damage(10);
+        }else if(Keyboard.state.get("z")){
+
+            this.player.playState("stabAttack", false);
+            this.enemy.damage(10);
+        }
+    }
+
+    public override update(deltaMS: number): void {
 
         super.update(deltaMS / 1000);
 
@@ -89,61 +123,61 @@ export class Player extends PhysicsContainer implements IHitbox{
             this.player.scale.x = 1;
             this.player.playState("run");
             //Movimiento a la Izquierda.
-        }else if (Keyboard.state.get("ArrowLeft")){
+        } else if (Keyboard.state.get("ArrowLeft")) {
 
             this.speed.x = - Player.MOVE_SPEED;
             this.player.scale.x = -1;
             this.player.playState("run");
             //Idle.
-        }else{
+        } else {
 
             this.player.playState("idle");
             this.speed.x = 0;
         }
 
-        if(Keyboard.state.get("ArrowUp")){
-            
+        if (Keyboard.state.get("ArrowUp")) {
+
             this.player.playState("jump", true);
             this.jump();
         }
 
-        if(Keyboard.state.get("ArrowDown")){
+        if (Keyboard.state.get("ArrowDown")) {
 
             this.acceleration.y = Player.GRAVITY * 2;
-        }else{
+        } else {
 
             this.acceleration.y = Player.GRAVITY;
         }
     }
 
-    private jump(){
-        if(this.canJump){
+    private jump() {
+        if (this.canJump) {
 
             this.canJump = false;
             this.speed.y = -Player.JUMP_SPEED;
         }
     }
 
-    
-    separate(overlap: Rectangle, platform: ObservablePoint<any>) {
-        if(overlap.width < overlap.height){
 
-            if(this.x > platform.x){
+    separate(overlap: Rectangle, platform: ObservablePoint<any>) {
+        if (overlap.width < overlap.height) {
+
+            if (this.x > platform.x) {
 
                 this.x += overlap.width;
-            }else if(this.x < platform.x){
+            } else if (this.x < platform.x) {
 
                 this.x -= overlap.width;
             }
 
-        }else{
-            
-            if(this.y < platform.y){
+        } else {
+
+            if (this.y < platform.y) {
 
                 this.y += overlap.height;
                 this.speed.y = 0;
                 this.canJump = true;
-            }else if(this.y > platform.y){
+            } else if (this.y > platform.y) {
 
                 this.y -= overlap.height;
                 this.speed.y = 0;

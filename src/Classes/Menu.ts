@@ -8,9 +8,9 @@ export class Menu extends Container implements IScene{
         super();
 
         const MenuBackground: Sprite = Sprite.from("./panel_blue.png");
-        this.scale.x = 5;
-        this.scale.y = 7;
-        this.position.x = 400;
+        this.scale.x = 3;
+        this.scale.y = 5;
+        this.position.x = 700;
         this.position.y = 10;
         this.addChild(MenuBackground);
         

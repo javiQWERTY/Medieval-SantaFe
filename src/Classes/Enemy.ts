@@ -11,9 +11,11 @@ export class Enemy extends PhysicsContainer implements IHitbox {
     
     public player: Player;
 
-    private hitbox: Graphics
+    private hitbox: Graphics;
 
     private static readonly GRAVITY = 600;
+
+    health: number;
 
     constructor() {
         super();
@@ -33,7 +35,7 @@ export class Enemy extends PhysicsContainer implements IHitbox {
             Texture.from("AbiponAsset/AbiponWalk/AbiponWalk 48x55.png"),
         ], 0.15);
         //Run State
-        this.enemy.addState("run", [
+        this.enemy.addState("spearmanRun", [
             "AbiponAsset/SpearmanRun/SpearManRun48x48.png",
             "AbiponAsset/SpearmanRun/SpearManRun48x49.png",
             "AbiponAsset/SpearmanRun/SpearManRun48x50.png",
@@ -43,15 +45,28 @@ export class Enemy extends PhysicsContainer implements IHitbox {
             "AbiponAsset/SpearmanRun/SpearManRun48x54.png",
             "AbiponAsset/SpearmanRun/SpearManRun48x55.png",
         ]);
+        // this.enemy.playState("spearmanRun");
+        //Attack State
+        this.enemy.addState("spearmanStab", [
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x48.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x49.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x50.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x51.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x52.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x53.png",
+            "AbiponAsset/SpearmanStab/SpearmanStab 96x54.png",
+        ])
         //Atributos de Posicion, Escala, Velocidad y Aceleracion.
         this.scale.set(5);
         this.position.set(600, 700);
         this.acceleration.y = Enemy.GRAVITY;
         this.speed.x = 70;
+        //Atributo de Salud
+        this.health = 100;
         //Creacion de la Hitbox
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 80, 32.5);
+        this.hitbox.drawRect(0, 0, 20, 32.5);
         this.hitbox.endFill();
         this.hitbox.x = -10;
         this.hitbox.y = -40;
@@ -63,10 +78,29 @@ export class Enemy extends PhysicsContainer implements IHitbox {
     public getHitbox(): Rectangle {
         return this.hitbox.getBounds();
     }
+    
+    public damage(amount: number): void{
+
+        //Restamos el daño de la salud del enemigo
+        this.health -= amount;
+        //Comprobamos si esta muerto
+        if(this.health <= 0){
+            //Eliminamos el enemigo--no funciona por ahora       
+        }
+    }
+
+    public attackToPlayer(): void{
+
+        this.enemy.playState("spearmanStab");
+    }
+
+    public enemyIdleRun(): void{
+
+        this.enemy.playState("spearmanRun");
+    }
 
     public override update(deltaMS: number): void {
         super.update(deltaMS / 1000);
-        this.enemy.playState("run");
 
         //Movimiento Horizontal
         this.x += this.speed.x * (deltaMS / 1000);
