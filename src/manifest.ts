@@ -22,7 +22,7 @@ export const manifest : ResolverManifest = {
             name : "AbiponSheet",
             assets : 
             {
-                "Abipon" : "./Abipon/texture.json"
+                "Abipon" : "./Abipon/abipon_texture.json"
             }
         }
     ]

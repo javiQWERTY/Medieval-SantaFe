@@ -1,0 +1,951 @@
+{
+  "frames": {
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x52.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 59,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 37,
+        "y": 15,
+        "w": 59,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x53.png": {
+      "frame": {
+        "x": 2,
+        "y": 31,
+        "w": 59,
+        "h": 25
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 37,
+        "y": 15,
+        "w": 59,
+        "h": 25
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x48.png": {
+      "frame": {
+        "x": 2,
+        "y": 60,
+        "w": 42,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 5,
+        "w": 42,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x54.png": {
+      "frame": {
+        "x": 48,
+        "y": 60,
+        "w": 46,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 38,
+        "y": 9,
+        "w": 46,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x55.png": {
+      "frame": {
+        "x": 48,
+        "y": 95,
+        "w": 44,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 8,
+        "w": 44,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x49.png": {
+      "frame": {
+        "x": 65,
+        "y": 2,
+        "w": 43,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 27,
+        "y": 8,
+        "w": 43,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x54.png": {
+      "frame": {
+        "x": 98,
+        "y": 38,
+        "w": 38,
+        "h": 34
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 6,
+        "w": 38,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x50.png": {
+      "frame": {
+        "x": 2,
+        "y": 99,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 10,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanStab/SpearmanStab 96x51.png": {
+      "frame": {
+        "x": 98,
+        "y": 80,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 10,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x51.png": {
+      "frame": {
+        "x": 96,
+        "y": 126,
+        "w": 39,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 8,
+        "w": 39,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x52.png": {
+      "frame": {
+        "x": 48,
+        "y": 131,
+        "w": 36,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 7,
+        "w": 36,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x50.png": {
+      "frame": {
+        "x": 2,
+        "y": 133,
+        "w": 29,
+        "h": 42
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 5,
+        "w": 29,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x48.png": {
+      "frame": {
+        "x": 112,
+        "y": 2,
+        "w": 30,
+        "h": 36
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 7,
+        "w": 30,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x49.png": {
+      "frame": {
+        "x": 132,
+        "y": 80,
+        "w": 27,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 5,
+        "w": 27,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/SpearmanRun/SpearManRun48x53.png": {
+      "frame": {
+        "x": 136,
+        "y": 36,
+        "w": 27,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 5,
+        "w": 27,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponHurt/AbiponHurt 48x49.png": {
+      "frame": {
+        "x": 132,
+        "y": 123,
+        "w": 20,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 6,
+        "w": 20,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x55.png": {
+      "frame": {
+        "x": 152,
+        "y": 2,
+        "w": 21,
+        "h": 31
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 9,
+        "w": 21,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponHurt/AbiponHurt 48x51.png": {
+      "frame": {
+        "x": 156,
+        "y": 123,
+        "w": 19,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 6,
+        "w": 19,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x72.png": {
+      "frame": {
+        "x": 163,
+        "y": 74,
+        "w": 29,
+        "h": 22
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 26,
+        "w": 29,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponHurt/AbiponHurt 48x50.png": {
+      "frame": {
+        "x": 167,
+        "y": 27,
+        "w": 19,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 7,
+        "w": 19,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x64.png": {
+      "frame": {
+        "x": 2,
+        "y": 166,
+        "w": 18,
+        "h": 34
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 14,
+        "w": 18,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponHurt/AbiponHurt 48x48.png": {
+      "frame": {
+        "x": 132,
+        "y": 161,
+        "w": 18,
+        "h": 33
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 7,
+        "w": 18,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x50.png": {
+      "frame": {
+        "x": 40,
+        "y": 169,
+        "w": 18,
+        "h": 33
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 7,
+        "w": 18,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x51.png": {
+      "frame": {
+        "x": 77,
+        "y": 169,
+        "w": 19,
+        "h": 31
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 9,
+        "w": 19,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x54.png": {
+      "frame": {
+        "x": 2,
+        "y": 188,
+        "w": 18,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 8,
+        "w": 18,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x65.png": {
+      "frame": {
+        "x": 112,
+        "y": 169,
+        "w": 13,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 14,
+        "w": 13,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x66.png": {
+      "frame": {
+        "x": 38,
+        "y": 191,
+        "w": 13,
+        "h": 34
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 14,
+        "w": 13,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x49.png": {
+      "frame": {
+        "x": 169,
+        "y": 161,
+        "w": 13,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 7,
+        "w": 13,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x53.png": {
+      "frame": {
+        "x": 129,
+        "y": 198,
+        "w": 13,
+        "h": 33
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 7,
+        "w": 13,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x48.png": {
+      "frame": {
+        "x": 76,
+        "y": 192,
+        "w": 13,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 8,
+        "w": 13,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponWalk/AbiponWalk 48x52.png": {
+      "frame": {
+        "x": 166,
+        "y": 198,
+        "w": 13,
+        "h": 32
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 8,
+        "w": 13,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x67.png": {
+      "frame": {
+        "x": 179,
+        "y": 107,
+        "w": 13,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 17,
+        "w": 13,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x68.png": {
+      "frame": {
+        "x": 179,
+        "y": 142,
+        "w": 14,
+        "h": 28
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 20,
+        "w": 14,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x69.png": {
+      "frame": {
+        "x": 65,
+        "y": 38,
+        "w": 14,
+        "h": 27
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 21,
+        "w": 14,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x70.png": {
+      "frame": {
+        "x": 186,
+        "y": 160,
+        "w": 14,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 21,
+        "w": 14,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x71.png": {
+      "frame": {
+        "x": 189,
+        "y": 64,
+        "w": 14,
+        "h": 27
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 21,
+        "w": 14,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x73.png": {
+      "frame": {
+        "x": 129,
+        "y": 183,
+        "w": 33,
+        "h": 6
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 42,
+        "w": 33,
+        "h": 6
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x74.png": {
+      "frame": {
+        "x": 196,
+        "y": 95,
+        "w": 33,
+        "h": 6
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 42,
+        "w": 33,
+        "h": 6
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "AbiponAsset/AbiponDeath/AbiponDeath 64x75.png": {
+      "frame": {
+        "x": 190,
+        "y": 2,
+        "w": 35,
+        "h": 5
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 43,
+        "w": 35,
+        "h": 5
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "abipon_texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 209,
+      "h": 213
+    },
+    "scale": 1
+  }
+}

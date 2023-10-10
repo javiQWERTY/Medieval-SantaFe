@@ -5,7 +5,10 @@ import { Player } from "../Classes/Player";
 //import { Platform } from "../Classes/Platform";
 import { Floor } from "../Classes/Floor";
 import { Enemy } from "../Classes/Enemy";
-//import { checkCollision } from "../utils/IHitbox";
+import { checkCollision } from "../utils/IHitbox";
+import { RectangleHitbox } from "../utils/RectangleHitbox";
+// import { RectangleHitbox } from "../utils/RectangleHitbox";
+// import { checkCollision } from "../utils/IHitbox";
 
 export class TickerScene extends Container implements IScene{
 
@@ -16,14 +19,10 @@ export class TickerScene extends Container implements IScene{
     private enemy: Enemy;
 
     private tiledFloor: Floor;
-    //private platforms:Platform[];
-    //private boxes: Box;
 
     private world:Container;
 
     private gameSpeed:number = 200;
-
-    //private timePassed:number = 0;
 
     constructor(){
         super();
@@ -35,88 +34,56 @@ export class TickerScene extends Container implements IScene{
         this.addChild(this.bg2);
         this.addChild(this.bg);
 
-        /*
-        this.platforms = []; 
-
-        let plat = new Platform();
-        plat.position.set(550, 500);
-        this.world.addChild(plat);
-        this.platforms.push(plat);
-
-        plat = new Platform();
-        plat.position.set(850, 400);
-        this.world.addChild(plat);
-        this.platforms.push(plat);
-
-        plat = new Platform();
-        plat.position.set(300, 610);
-        this.world.addChild(plat);
-        this.platforms.push(plat);
-
-        plat = new Platform();
-        plat.position.set(50, 500);
-        this.world.addChild(plat);
-        this.platforms.push(plat);
-        */
-
         this.player = new Player();
         this.enemy = new Enemy();
         this.tiledFloor = new Floor();
-        //this.boxes = new Box();
         this.world.addChild(this.tiledFloor);
-        //this.addChild(this.boxes);
         this.world.addChild(this.enemy);
         this.world.addChild(this.player);
-        this.addChild(this.world);      
-        
+        this.addChild(this.world);
+
         console.log("Nueva Escena!");
     }
+        /*
+            El método para que el enemigo detecte al jugador se puede dividir en los siguientes pasos:
+    
+            Obtener la hitbox del jugador.
+            Obtener la hitbox del enemigo.
+            Verificar si las dos hitbox se intersectan.
+        */
+            detectPlayer():void{
+
+                const enemyHitbox = new RectangleHitbox(this.enemy.getHitbox());
+                const playerHitbox = new RectangleHitbox(this.player.getHitbox());
+                const collision = checkCollision(enemyHitbox, playerHitbox);
+        
+                if(collision){
+        
+                    //El enemigo detecto al jugador
+                    console.log("!!! - STOP RIGHT THERE - !!!");
+                    //Hacemos que el enemigo vaya al jugador
+                    this.enemy.speed.x = (this.player.x - this.enemy.x) * 1;
+                    //Hacemos que el enemigo mire al jugador
+                    if(this.enemy.x < this.player.x){
+
+                        this.enemy.scale.x = 5;
+                    }else{
+
+                        this.enemy.scale.x = -5;
+                    }
+                }else{
+        
+                    console.log("It must be the wind");
+                }
+            }
+
     public update(deltaTime: number, deltaFrame: number):void{
 
-        //Creacion de una plataforma cada x segundos
-        /*
-        this.timePassed += deltaTime;
-
-        if(this.timePassed > 2000){
-
-            this.gameSpeed += 20;
-
-            this.timePassed = 0;
-
-            const plat = new Platform();
-            plat.position.set(Manager.width, Math.random() * 1080);
-            this.world.addChild(plat);
-            this.platforms.push(plat);
-
-        }
-        */
-
+        //Detect Player
+        this.detectPlayer();
         this.player.update(deltaTime);
         this.enemy.update(deltaTime);
-        /*
-        for (let platform of this.platforms) {
-
-            platform.speed.x = - this.gameSpeed;
-            platform.update(deltaTime / 1000);
-            
-            //console.log(checkCollision(this.player, platform));
-            const overlap = checkCollision(this.player, platform);
-            if(overlap != null){
-
-                this.player.separate(overlap, platform.position);
-            }
-
-            //Destruir plataformas fuera de la pantalla
-            if(platform.getHitbox().right < 0){
-
-                platform.destroy();
-            }
-        }
-        */
-
-        //Sacar las plataformas destruidas del Array de arriba
-        //this.platforms = this.platforms.filter((elem) => !elem.destroyed);
-        //console.log(this.platforms.length);
+        
 
         this.bg.tilePosition.x -= this.gameSpeed * (deltaFrame/1000);
 
